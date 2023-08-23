@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Mocha Tests",
+      "program": "${workspaceFolder}/tests/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--require",
+        "ts-node/register",
+        "${workspaceFolder}/tests/src/ApiTester.test.ts"
+      ],
+      "cwd": "${workspaceFolder}/tests",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

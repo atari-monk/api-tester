@@ -6,7 +6,6 @@
   "name": "atari-monk-api-tester-lib",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "build": "tsc",
     "i": "powershell.exe -ExecutionPolicy Bypass -File .\\script\\install.ps1"

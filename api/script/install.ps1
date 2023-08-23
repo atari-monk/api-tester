@@ -16,13 +16,11 @@ $libPath = $root + "lib\"
 Copy-Item ($projPath + $build + $pack) $libPath
 Set-Location $libPath
 npm i (Get-Item $pack).Name
-<#
 #install in tests
 $testsPath = $root + "tests\"
 Copy-Item ($projPath + $build + $pack) $testsPath
 Set-Location $testsPath
 npm i (Get-Item $pack).Name
-#>
 <#
 #clean files
 #Remove-Item ($projPath + $build + $pack)

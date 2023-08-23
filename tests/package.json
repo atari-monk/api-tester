@@ -1,0 +1,26 @@
+{
+  "name": "atari-monk-api-tester-tests",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "test": "npx mocha ./build/ApiTester.test.js",
+    "debug": "ndb mocha --require ts-node/register ./src/ApiTester.test.ts"
+  },
+  "keywords": [],
+  "author": "atari-monk",
+  "license": "ISC",
+  "dependencies": {
+    "atari-monk-api-tester-api": "file:atari-monk-api-tester-api-1.0.0.tgz",
+    "atari-monk-api-tester-lib": "file:atari-monk-api-tester-lib-1.0.0.tgz",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/sinon": "^10.0.16",
+    "ts-node": "^10.9.1"
+  }
+}
