@@ -1,0 +1,16 @@
+{
+  "name": "atari-monk-api-tester-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "i": "powershell.exe -ExecutionPolicy Bypass -File .\\script\\install.ps1"
+  },
+  "keywords": [],
+  "author": "atari-monk",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

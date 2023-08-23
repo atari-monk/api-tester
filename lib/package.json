@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "atari-monk-api-tester-api": "file:atari-monk-api-tester-api-1.0.0.tgz",
+    "axios": "^1.4.0"
+  },
+  "name": "atari-monk-api-tester-lib",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "build": "tsc",
+    "i": "powershell.exe -ExecutionPolicy Bypass -File .\\script\\install.ps1"
+  },
+  "keywords": [],
+  "author": "atari-monk",
+  "license": "ISC",
+  "description": ""
+}
