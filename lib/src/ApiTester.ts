@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { IApiTester, IRouting, first } from 'atari-monk-api-tester-api'
+import { IApiTester, IRouting } from 'atari-monk-api-tester-api'
 
 export class ApiTester implements IApiTester {
   constructor(private readonly routing: IRouting) {}
 
-  public async testGet(key: string, showFirst: boolean = false): Promise<void> {
+  public async testGet(key: string): Promise<AxiosResponse> {
     try {
       const { nr, url } = this.buildTestData(key)
       console.log(`${nr}. ${key}`)
@@ -13,12 +13,11 @@ export class ApiTester implements IApiTester {
       const response = await axios.get(url)
       console.log('Elements Count:', response.data.length)
 
-      if (showFirst) {
-        console.log('First element:', first(response.data))
-      }
+      return response
     } catch (error) {
       const axiosError = error as AxiosError
-      console.error('Error:', axiosError.response?.data)
+      console.error('Error:', (error as Error).message)
+      throw axiosError
     }
   }
 
