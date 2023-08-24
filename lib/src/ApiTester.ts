@@ -43,7 +43,6 @@ export class ApiTester implements IApiTester {
     }
   }
 
-  //todo: assert 200
   public async patch(key: string, patchData: object): Promise<AxiosResponse> {
     try {
       return await axios.patch(this.buildTestData(key), patchData)
@@ -54,7 +53,6 @@ export class ApiTester implements IApiTester {
     }
   }
 
-  //todo: assert 200
   public async delete(key: string): Promise<AxiosResponse> {
     try {
       return await axios.delete(this.buildTestData(key))
