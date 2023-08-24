@@ -12,7 +12,8 @@ describe('Mock axios and test ApiTester::delete', () => {
     },
   }
 
-  const tester = new ApiTester(mockRouting)
+  const tester = new ApiTester()
+  tester.routing = mockRouting
   let mock: MockAdapter
 
   beforeEach(() => {

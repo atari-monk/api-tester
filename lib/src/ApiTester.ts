@@ -2,7 +2,11 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { IApiTester, IRouting } from 'atari-monk-api-tester-api'
 
 export class ApiTester implements IApiTester {
-  constructor(private readonly routing: IRouting) {}
+  private _routing?: IRouting
+
+  public set routing(routing: IRouting) {
+    this._routing = routing
+  }
 
   public async get(key: string): Promise<AxiosResponse> {
     try {
@@ -17,16 +21,16 @@ export class ApiTester implements IApiTester {
   }
 
   private buildTestData(key: string) {
-    const endpoint = this.routing.endpoints[key]
+    const endpoint = this._routing!.endpoints[key]
 
     if (!endpoint) {
       throw new Error(`Endpoint with key '${key}' not found.`)
     }
 
-    const keys = Object.keys(this.routing.endpoints)
+    const keys = Object.keys(this._routing!.endpoints)
     const nr = keys.indexOf(key) + 1
 
-    const url = this.routing.baseUrl + '/' + endpoint.endpoint
+    const url = this._routing!.baseUrl + '/' + endpoint.endpoint
 
     console.log(`${nr}. ${key}`)
     console.log('Endpoint:', url)
