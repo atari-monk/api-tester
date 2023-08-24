@@ -33,7 +33,6 @@ export class ApiTester implements IApiTester {
     return url
   }
 
-  //todo: assert 201
   public async post(key: string, postData: object): Promise<AxiosResponse> {
     try {
       return await axios.post(this.buildTestData(key), postData)
