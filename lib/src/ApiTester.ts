@@ -4,19 +4,14 @@ import { IApiTester, IRouting } from 'atari-monk-api-tester-api'
 export class ApiTester implements IApiTester {
   constructor(private readonly routing: IRouting) {}
 
-  public async testGet(key: string): Promise<AxiosResponse> {
+  public async get(key: string): Promise<AxiosResponse> {
     try {
-      const { nr, url } = this.buildTestData(key)
-      console.log(`${nr}. ${key}`)
-      console.log('Endpoint:', url)
-
-      const response = await axios.get(url)
+      const response = await axios.get(this.buildTestData(key))
       console.log('Elements Count:', response.data.length)
-
       return response
     } catch (error) {
       const axiosError = error as AxiosError
-      console.error('Error:', (error as Error).message)
+      console.error('Error:', axiosError.message)
       throw axiosError
     }
   }
@@ -32,78 +27,42 @@ export class ApiTester implements IApiTester {
     const nr = keys.indexOf(key) + 1
 
     const url = this.routing.baseUrl + '/' + endpoint.endpoint
-    return { nr, url }
+
+    console.log(`${nr}. ${key}`)
+    console.log('Endpoint:', url)
+    return url
   }
 
-  public async testPost(
-    key: string,
-    postData: object,
-    showData: boolean = false
-  ): Promise<string> {
+  //todo: assert 201
+  public async post(key: string, postData: object): Promise<AxiosResponse> {
     try {
-      const { nr, url } = this.buildTestData(key)
-      console.log(`${nr}. ${key}`)
-      console.log('Endpoint:', url)
-
-      const response: AxiosResponse = await axios.post(url, postData)
-      return this.handleResponse(response, 201, showData)
+      return await axios.post(this.buildTestData(key), postData)
     } catch (error) {
       const axiosError = error as AxiosError
-      console.error('Error:', axiosError)
-      return ''
+      console.error('Error:', axiosError.message)
+      throw axiosError
     }
   }
 
-  private handleResponse(
-    response: AxiosResponse,
-    expectedStatus: number,
-    showData: boolean
-  ) {
-    if (response.status === expectedStatus) {
-      console.log('Response Status:', response.status)
-
-      if (showData) {
-        console.log('Data:', response.data)
-      }
-
-      return response.data
-    } else {
-      throw new Error('Unexpected response status: ' + response.status)
+  //todo: assert 200
+  public async patch(key: string, patchData: object): Promise<AxiosResponse> {
+    try {
+      return await axios.patch(this.buildTestData(key), patchData)
+    } catch (error) {
+      const axiosError = error as AxiosError
+      console.error('Error:', axiosError.message)
+      throw axiosError
     }
   }
 
-  public async testPatch(
-    key: string,
-    patchData: object,
-    showData: boolean = false
-  ): Promise<void> {
+  //todo: assert 200
+  public async delete(key: string): Promise<AxiosResponse> {
     try {
-      const { nr, url } = this.buildTestData(key)
-      console.log(`${nr}. ${key}`)
-      console.log('Endpoint:', url)
-
-      const response: AxiosResponse = await axios.patch(url, patchData)
-      this.handleResponse(response, 200, showData)
+      return await axios.delete(this.buildTestData(key))
     } catch (error) {
       const axiosError = error as AxiosError
-      console.error('Error:', axiosError)
-    }
-  }
-
-  public async testDelete(
-    key: string,
-    showData: boolean = false
-  ): Promise<void> {
-    try {
-      const { nr, url } = this.buildTestData(key)
-      console.log(`${nr}. ${key}`)
-      console.log('Endpoint:', url)
-
-      const response: AxiosResponse = await axios.delete(url)
-      this.handleResponse(response, 200, showData)
-    } catch (error) {
-      const axiosError = error as AxiosError
-      console.error('Error:', axiosError.response?.data)
+      console.error('Error:', axiosError.message)
+      throw axiosError
     }
   }
 }

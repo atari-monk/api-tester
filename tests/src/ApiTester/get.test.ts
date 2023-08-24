@@ -4,7 +4,7 @@ import { ApiTester } from 'atari-monk-api-tester-lib'
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 
-describe('ApiTester', () => {
+describe('Mock axios and test ApiTester::testGet', () => {
   const mockRouting = {
     baseUrl: 'https://example.com/api',
     endpoints: {
@@ -19,7 +19,7 @@ describe('ApiTester', () => {
     const key = 'nonExistentEndpoint'
 
     try {
-      await tester.testGet(key)
+      await tester.get(key)
     } catch (error) {
       expect((error as Error).message).to.equal(
         `Endpoint with key '${key}' not found.`
@@ -40,7 +40,7 @@ describe('ApiTester', () => {
       .reply(200, mockResponse)
 
     try {
-      const response = await tester.testGet(key)
+      const response = await tester.get(key)
       expect(response.status).to.equal(200)
       expect(response.data).to.deep.equal(mockResponse)
     } catch (error) {}

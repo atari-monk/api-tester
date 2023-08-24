@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "build": "tsc",
-    "test": "npx mocha ./build/ApiTester.test.js",
-    "debug": "ndb mocha --require ts-node/register ./src/ApiTester.test.ts"
+    "test": "npx mocha ./build/*.test.js",
+    "debug": "ndb mocha --require ts-node/register ./src/ApiTester/get.test.ts"
   },
   "keywords": [],
   "author": "atari-monk",

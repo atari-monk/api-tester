@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
 
 export interface IApiTester {
-  testGet(key: string): Promise<AxiosResponse>
-  testPost(key: string, postData: object, showData: boolean): Promise<string>
-  testPatch(key: string, patchData: object, showData: boolean): Promise<void>
-  testDelete(key: string, showData: boolean): Promise<void>
+  get(key: string): Promise<AxiosResponse>
+  post(key: string, postData: object): Promise<AxiosResponse>
+  patch(key: string, patchData: object): Promise<AxiosResponse>
+  delete(key: string): Promise<AxiosResponse>
 }
